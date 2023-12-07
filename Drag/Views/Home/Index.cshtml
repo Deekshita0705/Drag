@@ -1,0 +1,58 @@
+﻿<script>
+    // Display alert message if present in TempData
+    var alertMessage = '@TempData["AlertMessage"]';
+    //if (alertMessage !== "") {
+    //    alert(alertMessage);
+    //}
+</script>
+
+
+@model IEnumerable<Drag.Models.Item>
+<table width="100%">
+    <tr>
+        <th>
+            <h2>Table 1</h2>
+        </th>
+        <th>
+            <h2>Table 2</h2>
+        </th>
+    </tr>
+    <tr>
+        <td>
+            @using (Html.BeginForm("MoveForward", "Home", FormMethod.Post))
+            {
+                foreach (var item in ViewBag.Table1 as List<Item>)
+                {
+                    <label>
+                        @Html.CheckBox("selectedItems", false, new { value = item.Id }) @item.Name
+                    </label>
+                    <br />
+                }
+                <input type="submit" value="Move Forward" />
+            }
+        </td>
+        <td>
+            @using (Html.BeginForm("MoveBackward", "Home", FormMethod.Post))
+            {
+                foreach (var item in ViewBag.Table2 as List<Item>)
+                {
+                    <label>
+                        @Html.CheckBox("selectedItems", false, new { value = item.Id }) @item.Name
+                    </label>
+                    <br />
+                }
+                <input type="submit" value="Move Backward" />
+            }
+        </td>
+    </tr>
+</table>
+
+<script>
+    // Display alert message if present in TempData
+    var alertMessage = '@TempData["AlertMessage"]';
+    if (alertMessage !== "") {
+        alert(alertMessage);
+    }
+</script>
+
+
